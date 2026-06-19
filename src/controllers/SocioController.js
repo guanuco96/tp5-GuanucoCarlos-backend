@@ -1,35 +1,73 @@
 const Socio = require("../models/Socio");
 
-exports.crearSocio = async (req, res) => {
-    const socio = await Socio.create(req.body);
-    res.json(socio);
+const socioCtrl = {};
+
+socioCtrl.crearSocio = async (req, res) => {
+    try {
+        const socio = await Socio.create(req.body);
+        res.json(socio);
+    } catch (error) {
+        res.status(500).json({
+            mensaje: "Error al crear socio", error: error.message
+        });
+    }
 };
 
-exports.obtenerSocios = async (req, res) => {
-    const socios = await Socio.findAll();
-    res.json(socios);
+socioCtrl.obtenerSocios = async (req, res) => {
+    try {
+        const socios = await Socio.findAll();
+        res.json(socios);
+    } catch (error) {
+        res.status(500).json({
+            mensaje: "Error al obtener socios",error: error.message
+        });
+    }
 };
 
-exports.obtenerActivos = async (req, res) => {
-    const socios = await Socio.findAll({
-        where: { activo: true }
-    });
 
-    res.json(socios);
+socioCtrl.obtenerActivos = async (req, res) => {
+    try {
+        const socios = await Socio.findAll({
+            where:{ activo: true}
+        });
+        res.json(socios);
+
+    } catch (error) {
+        res.status(500).json({mensaje: "Error al obtener socios activos",error: error.message
+        });
+    }
 };
 
-exports.modificarSocio = async (req, res) => {
-    await Socio.update(req.body, {
-        where: { id: req.params.id }
-    });
+socioCtrl.modificarSocio = async (req, res) => {
+    try {
 
-    res.json({ mensaje: "Socio actualizado" });
+        await Socio.update(req.body, {
+            where: {id: req.params.id}
+        });
+
+        res.json({mensaje: "Socio actualizado"});
+
+    } catch (error) {
+
+        res.status(500).json({
+            mensaje: "Error al actualizar socio",
+            error: error.message
+        });
+
+    }
 };
 
-exports.eliminarSocio = async (req, res) => {
-    await Socio.destroy({
-        where: { id: req.params.id }
-    });
 
-    res.json({ mensaje: "Socio eliminado" });
+socioCtrl.eliminarSocio = async (req, res) => {
+    try {
+        await Socio.destroy({
+            where: {id: req.params.id}
+        });
+        res.json({mensaje: "Socio eliminado"});
+
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al eliminar socio",error: error.message});
+    }
 };
+
+module.exports = socioCtrl;

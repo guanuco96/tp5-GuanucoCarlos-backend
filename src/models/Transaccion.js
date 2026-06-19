@@ -2,11 +2,11 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
 
 const Transaccion = sequelize.define("Transaccion", {
-    idiomaOrigen: DataTypes.STRING,
-    textoOrigen: DataTypes.STRING,
-    idiomaDestino: DataTypes.STRING,
-    textoDestino: DataTypes.STRING,
-    emailCliente: DataTypes.STRING
+    idiomaOrigen:{type:DataTypes.STRING,allowNull: false},
+    textoOrigen:{type:DataTypes.STRING,allowNull: false},
+    idiomaDestino:{type:DataTypes.STRING,allowNull: false},
+    textoDestino:{type:DataTypes.STRING,allowNull: false},
+    emailCliente:{type:DataTypes.STRING,allowNull: false}
 });
 
 module.exports = Transaccion;

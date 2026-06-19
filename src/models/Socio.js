@@ -2,12 +2,12 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
 
 const Socio = sequelize.define("Socio", {
-    nombre: DataTypes.STRING,
-    apellido: DataTypes.STRING,
-    foto: DataTypes.STRING,
-    dni: DataTypes.STRING,
-    numeroSocio: DataTypes.INTEGER,
-    activo: DataTypes.BOOLEAN
+    nombre:{type:DataTypes.STRING,allowNull: false},
+    apellido:{type:DataTypes.STRING,allowNull: false},
+    foto:{type:DataTypes.STRING,allowNull: false},
+    dni:{type:DataTypes.STRING,allowNull: false},
+    numeroSocio:{type:DataTypes.INTEGER,allowNull: false},
+    activo:{type:DataTypes.BOOLEAN,allowNull: false}
 });
 
 module.exports = Socio;

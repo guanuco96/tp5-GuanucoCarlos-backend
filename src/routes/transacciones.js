@@ -49,8 +49,7 @@ router.get("/", controller.obtenerTodas);
  *         description: Histórico del cliente
  */
 
-router.get("/cliente/:email",
-    controller.obtenerPorEmail);
+router.get("/cliente/:email",controller.obtenerPorEmail);
 
 /**
  * @swagger
@@ -70,7 +69,6 @@ router.get("/cliente/:email",
  *         description: Transacciones filtradas
  */
 
-router.get("/:origen/:destino",
-    controller.obtenerPorIdiomas);
+router.get("/:origen/:destino",controller.obtenerPorIdiomas);
 
 module.exports = router;
